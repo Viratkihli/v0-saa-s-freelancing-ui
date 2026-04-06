@@ -1,0 +1,36 @@
+import { cn } from "@/lib/utils"
+import { ReactNode } from "react"
+
+interface GlassCardProps {
+  children: ReactNode
+  className?: string
+  hover?: boolean
+}
+
+export function GlassCard({ children, className, hover = false }: GlassCardProps) {
+  return (
+    <div
+      className={cn(
+        "glass rounded-xl p-6 transition-all duration-300",
+        hover && "hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1",
+        className
+      )}
+    >
+      {children}
+    </div>
+  )
+}
+
+export function GlassCardStrong({ children, className, hover = false }: GlassCardProps) {
+  return (
+    <div
+      className={cn(
+        "glass-strong rounded-xl p-6 transition-all duration-300",
+        hover && "hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1",
+        className
+      )}
+    >
+      {children}
+    </div>
+  )
+}
