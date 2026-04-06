@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { GlassCard } from "@/components/ui/glass-card"
@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import { Zap, Mail, Lock, User, Eye, EyeOff, Briefcase, Code } from "lucide-react"
 
-export default function SignUpPage() {
+function SignUpForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const defaultRole = searchParams.get("role") || "freelancer"
@@ -210,5 +210,17 @@ export default function SignUpPage() {
         </GlassCard>
       </div>
     </div>
+  )
+}
+
+export default function SignUpPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center p-4 gradient-hero">
+        <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <SignUpForm />
+    </Suspense>
   )
 }
